@@ -1,0 +1,8 @@
+﻿<Solution>
+    <Folder Name="/Solution items/">
+        <File Path="Directory.Build.props" />
+        <File Path=".gitignore" />
+        <File Path=".editorconfig" />
+        <File Path="README.md" />
+    </Folder>
+</Solution>
