@@ -27,7 +27,6 @@ public class ResultTests
 
         // Assert
         Assert.False(result.IsSuccessful);
-        Assert.NotEmpty(result.Errors);
         Assert.NotEmpty(result.Errors.SelectMany(error => error.Value));
     }
 
@@ -44,7 +43,6 @@ public class ResultTests
 
         // Assert
         Assert.False(result.IsSuccessful);
-        Assert.NotEmpty(result.Errors);
         Assert.NotEmpty(result.Errors.SelectMany(error => error.Value));
     }
 
@@ -74,7 +72,6 @@ public class ResultTests
 
         // Assert
         Assert.False(result.IsSuccessful);
-        Assert.NotEmpty(result.Errors);
         Assert.NotEmpty(result.Errors.SelectMany(error => error.Value));
     }
 
@@ -102,7 +99,6 @@ public class ResultTests
 
         // Assert
         Assert.False(result.IsSuccessful);
-        Assert.NotEmpty(result.Errors);
         Assert.NotEmpty(result.Errors.SelectMany(error => error.Value));
         Assert.Null(result.Value);
     }
@@ -120,7 +116,6 @@ public class ResultTests
 
         // Assert
         Assert.False(result.IsSuccessful);
-        Assert.NotEmpty(result.Errors);
         Assert.NotEmpty(result.Errors.SelectMany(error => error.Value));
         Assert.Null(result.Value);
     }
@@ -155,7 +150,6 @@ public class ResultTests
 
         // Assert
         Assert.False(result.IsSuccessful);
-        Assert.NotEmpty(result.Errors);
         Assert.NotEmpty(result.Errors.SelectMany(error => error.Value));
     }
 }
