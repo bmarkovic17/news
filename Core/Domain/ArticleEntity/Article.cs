@@ -6,7 +6,7 @@ namespace NewsApp.Core.Domain.ArticleEntity;
 
 public sealed class Article
 {
-    private Article(Title title, Content? content = null)
+    private Article(Title title, Content content)
     {
         Id = default;
         Title = title;
@@ -19,7 +19,7 @@ public sealed class Article
 
     public Title Title { get; private set; }
 
-    public Content? Content { get; private set; }
+    public Content Content { get; private set; }
 
     public ArticleStatus Status { get; private set; }
 
@@ -29,7 +29,7 @@ public sealed class Article
 
     public DateTimeOffset? Published { get; private set; }
 
-    public static Result<Article> Create(string title, string? content)
+    public static Result<Article> Create(string? title, string? content)
     {
         var titleCreateResult = Title.Create(title);
         var contentCreateResult = Content.Create(content);
@@ -42,7 +42,7 @@ public sealed class Article
         return articleCreateResult;
     }
 
-    public Result Update(Title title, Content? content)
+    public Result Update(Title title, Content content)
     {
         if (title == Title && content == Content)
             return Result.Success();
