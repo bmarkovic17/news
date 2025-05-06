@@ -7,7 +7,7 @@ namespace NewsApp.Core.SharedKernel;
 
 public sealed class Result
 {
-    private static readonly Result SuccessInstance = Success();
+    private static readonly Result SuccessInstance = new();
 
     private Result(IDictionary<string, ICollection<string>>? errors = null) =>
         Errors = errors?.ToDictionary(
@@ -22,8 +22,12 @@ public sealed class Result
     public static Result Success() =>
         SuccessInstance;
 
-    public static Result Fail(IDictionary<string, ICollection<string>> errors) =>
-        new(errors);
+    public static Result Fail(IDictionary<string, ICollection<string>> errors)
+    {
+        ResultHelper.EnsureAtLeastOneError(errors);
+
+        return new Result(errors);
+    }
 
     public static Result Create(params IEnumerable<IDictionary<string, ICollection<string>>> errors)
     {
@@ -55,8 +59,12 @@ public sealed class Result<T>
     public static Result<T> Success(T value) =>
         new(value);
 
-    public static Result<T> Fail(IDictionary<string, ICollection<string>> errors) =>
-        new(value: default, errors);
+    public static Result<T> Fail(IDictionary<string, ICollection<string>> errors)
+    {
+        ResultHelper.EnsureAtLeastOneError(errors);
+
+        return new Result<T>(value: default, errors);
+    }
 
     public static Result<T> Create(Func<T> valueFactory, params IEnumerable<IDictionary<string, ICollection<string>>> errors)
     {
@@ -90,5 +98,16 @@ file static class ResultHelper
         }
 
         return processedErrors;
+    }
+
+    public static void EnsureAtLeastOneError(IDictionary<string, ICollection<string>> errors)
+    {
+        var errorCount = errors.Aggregate(0, (current, error) => current + error.Value.Count);
+
+        if (errorCount > 0)
+            return;
+
+        errors.Clear();
+        errors.Add(string.Empty, ["error"]);
     }
 }
