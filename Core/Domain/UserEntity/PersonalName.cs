@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using NewsApp.Core.SharedKernel;
 
 namespace NewsApp.Core.Domain.UserEntity;
 

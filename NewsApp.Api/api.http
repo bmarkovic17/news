@@ -1,0 +1,9 @@
+@Host = https://localhost:7247
+
+GET {{Host}}/api/v1/article
+Content-Type: application/json
+Accept: application/json
+
+{}
+
+###

@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+    <PropertyGroup>
+        <UserSecretsId>0a92d7fc-97bc-472b-8af5-daa52b5036b1</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Infrastructure\NewsApp.Infrastructure.csproj" />
+    </ItemGroup>
+</Project>

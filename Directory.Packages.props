@@ -2,6 +2,7 @@
     <ItemGroup>
         <PackageVersion Include="EFCore.NamingConventions" Version="9.0.0" />
         <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.4" />
         <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.4" />
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
         <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />

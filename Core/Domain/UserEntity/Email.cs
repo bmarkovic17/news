@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Net.Mail;
-using NewsApp.Core.SharedKernel;
 
 namespace NewsApp.Core.Domain.UserEntity;
 

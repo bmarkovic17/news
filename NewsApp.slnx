@@ -10,6 +10,7 @@
     <Folder Name="/Src/">
         <Project Path="Core\NewsApp.Core.csproj" Type="Classic C#" />
         <Project Path="Infrastructure\NewsApp.Infrastructure.csproj" Type="Classic C#" />
+        <Project Path="NewsApp.Api\NewsApp.Api.csproj" Type="Classic C#" />
     </Folder>
 
     <Folder Name="/Tests/">
