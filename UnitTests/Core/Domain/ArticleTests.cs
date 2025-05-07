@@ -93,9 +93,9 @@ public class ArticleTests
     public void Article_Update_Valid_ReturnsSuccessResult()
     {
         // Arrange
+        const string newTitle = "Article title 2";
+        const string newContent = "Sample content";
         var article = Article.Create("Article title", null).Value!;
-        var newTitle = Title.Create("Article title 2").Value!;
-        var newContent = Content.Create("Sample content").Value!;
 
         // Act
         var result = article.Update(newTitle, newContent);
@@ -103,8 +103,8 @@ public class ArticleTests
         // Assert
         Assert.True(result.IsSuccessful);
         Assert.Empty(result.Errors);
-        Assert.Equal(newTitle.Value, article.Title.Value);
-        Assert.Equal(newContent.Value, article.Content.Value);
+        Assert.Equal(newTitle, article.Title.Value);
+        Assert.Equal(newContent, article.Content.Value);
         Assert.True(article.Modified > DateTimeOffset.UtcNow.AddMilliseconds(MillisecondsForTimestampComparison));
     }
 
@@ -113,8 +113,8 @@ public class ArticleTests
     {
         // Arrange
         var article = Article.Create("Article title", null).Value!;
-        var sameTitle = Title.Create(article.Title.Value).Value!;
-        var sameContent = Content.Create(article.Content.Value).Value!;
+        var sameTitle = article.Title.Value;
+        var sameContent = article.Content.Value;
 
         // Act
         var result = article.Update(sameTitle, sameContent);
@@ -122,8 +122,8 @@ public class ArticleTests
         // Assert
         Assert.True(result.IsSuccessful);
         Assert.Empty(result.Errors);
-        Assert.Equal(sameTitle, article.Title);
-        Assert.Equal(sameContent, article.Content);
+        Assert.Equal(sameTitle, article.Title.Value);
+        Assert.Equal(sameContent, article.Content.Value);
         Assert.Null(article.Modified);
     }
 

@@ -6,6 +6,14 @@ namespace NewsApp.Core.Domain.ArticleEntity;
 
 public sealed class Article
 {
+    // Used by EF only
+    // Can be removed once https://github.com/dotnet/efcore/issues/31621 is implemented
+    private Article()
+    {
+        Title = default!;
+        Content = default!;
+    }
+
     private Article(Title title, Content content)
     {
         Id = default;
@@ -42,13 +50,23 @@ public sealed class Article
         return articleCreateResult;
     }
 
-    public Result Update(Title title, Content content)
+    public Result Update(string title, string? content)
     {
-        if (title == Title && content == Content)
+        var createTitleResult = Title.Create(title);
+        var createContentResult = Content.Create(content);
+
+        var validParameters =
+            createTitleResult.IsSuccessful &&
+            createContentResult.IsSuccessful;
+
+        if (validParameters is false)
+            return Result.Fail(createTitleResult.Errors, createContentResult.Errors);
+
+        if (createTitleResult.Value == Title && createContentResult.Value == Content)
             return Result.Success();
 
-        Title = title;
-        Content = content;
+        Title = createTitleResult.Value!;
+        Content = createContentResult.Value!;
         Modified = DateTimeOffset.UtcNow;
 
         return Result.Success();

@@ -9,9 +9,10 @@
 
     <Folder Name="/Src/">
         <Project Path="Core\NewsApp.Core.csproj" Type="Classic C#" />
+        <Project Path="Infrastructure\NewsApp.Infrastructure.csproj" Type="Classic C#" />
     </Folder>
 
     <Folder Name="/Tests/">
-        <Project Path="NewsApp.UnitTests\NewsApp.UnitTests.csproj" Type="Classic C#" />
+        <Project Path="UnitTests\NewsApp.UnitTests.csproj" Type="Classic C#" />
     </Folder>
 </Solution>

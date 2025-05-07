@@ -5,10 +5,8 @@ namespace NewsApp.Core.Domain.ArticleEntity;
 
 public sealed class Content : ValueObject<Content>
 {
-    private Content(string? content)
-    {
-        Value = content;
-    }
+    private Content(string? value) =>
+        Value = value;
 
     public string? Value { get; }
 

@@ -7,8 +7,6 @@ public sealed class User
 {
     private readonly List<Article> _articles = [];
 
-    public required int Id { get; init; }
-
     public required PersonalName PersonalName { get; init; }
 
     public required Email Email { get; init; }

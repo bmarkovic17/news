@@ -22,11 +22,13 @@ public sealed class Result
     public static Result Success() =>
         SuccessInstance;
 
-    public static Result Fail(IDictionary<string, ICollection<string>> errors)
+    public static Result Fail(params IEnumerable<IDictionary<string, ICollection<string>>> errors)
     {
-        ResultHelper.EnsureAtLeastOneError(errors);
+        var processedErrors = ResultHelper.ProcessErrors(errors);
 
-        return new Result(errors);
+        ResultHelper.EnsureAtLeastOneError(processedErrors);
+
+        return new Result(processedErrors);
     }
 
     public static Result Create(params IEnumerable<IDictionary<string, ICollection<string>>> errors)
@@ -59,11 +61,13 @@ public sealed class Result<T>
     public static Result<T> Success(T value) =>
         new(value);
 
-    public static Result<T> Fail(IDictionary<string, ICollection<string>> errors)
+    public static Result<T> Fail(params IEnumerable<IDictionary<string, ICollection<string>>> errors)
     {
-        ResultHelper.EnsureAtLeastOneError(errors);
+        var processedErrors = ResultHelper.ProcessErrors(errors);
 
-        return new Result<T>(value: default, errors);
+        ResultHelper.EnsureAtLeastOneError(processedErrors);
+
+        return new Result<T>(value: default, processedErrors);
     }
 
     public static Result<T> Create(Func<T> valueFactory, params IEnumerable<IDictionary<string, ICollection<string>>> errors)

@@ -8,10 +8,8 @@ public sealed class Title : ValueObject<Title>
     private const string ErrorKey = "title";
     private const int MaxLength = 50;
 
-    private Title(string title)
-    {
-        Value = title;
-    }
+    private Title(string value) =>
+        Value = value;
 
     public string Value { get; }
 

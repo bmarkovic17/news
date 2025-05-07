@@ -8,10 +8,8 @@ public sealed class Email : ValueObject<Email>
 {
     private const string ErrorKey = "email";
 
-    private Email(string email)
-    {
-        Value = email;
-    }
+    private Email(string value) =>
+        Value = value;
 
     public string Value { get; }
 
