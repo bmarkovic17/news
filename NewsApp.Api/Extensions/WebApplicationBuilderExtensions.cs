@@ -9,6 +9,8 @@ internal static class WebApplicationBuilderExtensions
 {
     public static void AddNewsApp(this WebApplicationBuilder builder)
     {
+        builder.ConfigureOpenTelemetry();
+
         var connectionString = builder.Configuration.GetSection("ConnectionString").Value;
 
         if (string.IsNullOrWhiteSpace(connectionString))
@@ -19,5 +21,13 @@ internal static class WebApplicationBuilderExtensions
 
         builder.Services.AddNewsAppInfrastructure(connectionString);
         builder.Services.AddQueryHandlers();
+    }
+
+    private static void ConfigureOpenTelemetry(this WebApplicationBuilder builder)
+    {
+        if (string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]))
+            return;
+
+        builder.Services.UseOpenTelemetry();
     }
 }

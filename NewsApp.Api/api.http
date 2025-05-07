@@ -1,9 +1,8 @@
 @Host = https://localhost:7247
 
+# @name Get all articles
 GET {{Host}}/api/v1/article
 Content-Type: application/json
 Accept: application/json
 
 {}
-
-###
