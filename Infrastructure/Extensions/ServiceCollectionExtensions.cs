@@ -16,7 +16,9 @@ public static class ServiceCollectionExtensions
                     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution)
                     .UseNpgsql(
                         connectionString,
-                        npgsqlOptions => npgsqlOptions.EnableRetryOnFailure())
+                        npgsqlOptions => npgsqlOptions
+                            .EnableRetryOnFailure()
+                            .MapEnums())
                     .UseSnakeCaseNamingConvention());
 
     public static void UseOpenTelemetry(this IServiceCollection services)
