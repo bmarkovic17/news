@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -20,11 +21,19 @@ namespace NewsApp.Api.Endpoints;
 
 internal static class ArticleEndpoints
 {
-    public static RouteGroupBuilder MapArticleEndpoints(this RouteGroupBuilder group)
+    public static RouteGroupBuilder MapPublicArticleEndpoints(this RouteGroupBuilder group)
     {
         _ = group
             .MapGroup("/article")
-            .MapGetAllArticlesEndpoint()
+            .MapGetAllArticlesEndpoint();
+
+        return group;
+    }
+
+    public static RouteGroupBuilder MapSecuredArticleEndpoints(this RouteGroupBuilder group)
+    {
+        _ = group
+            .MapGroup("/article")
             .MapCreateNewArticleEndpoint();
 
         return group;
@@ -70,12 +79,18 @@ internal static class ArticleEndpoints
                 "/",
                 async Task<Results<Ok<Result<Article>>, BadRequest<Result>, InternalServerError>>(
                     ILogger<CreateArticleCommand> logger,
+                    ClaimsPrincipal user,
                     CreateArticleCommand command,
                     CreateArticleCommandHandler handler,
                     CancellationToken cancellationToken) =>
                 {
                     try
                     {
+                        if (int.TryParse(user.FindFirst(ClaimTypes.NameIdentifier)?.Value, out var userId))
+                            command.UserId = userId;
+                        else
+                            return TypedResults.BadRequest(Result.Fail());
+
                         var createArticleResult = await handler.HandleAsync(command, cancellationToken);
 
                         return createArticleResult.IsSuccessful

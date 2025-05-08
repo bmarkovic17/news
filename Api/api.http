@@ -22,6 +22,7 @@ Accept: application/json
 POST {{Host}}/api/v1/article
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer <TOKEN>
 
 {
     "title": "Some article title"
@@ -33,6 +34,7 @@ Content-Type: application/json
 POST {{Host}}/api/v1/article
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer <TOKEN>
 
 {
     "title": "Some article title",
@@ -45,8 +47,20 @@ Content-Type: application/json
 POST {{Host}}/api/v1/article
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer <TOKEN>
 
 {
     "title": "",
     "content": "Sample content for new article"
+}
+
+###
+
+# @name Create new article without authorization token
+POST {{Host}}/api/v1/article
+Accept: application/json
+Content-Type: application/json
+
+{
+    "title": "Some article title"
 }

@@ -9,6 +9,8 @@ internal static class WebApplicationBuilderExtensions
 {
     public static void AddNewsApp(this WebApplicationBuilder builder)
     {
+        builder.Services.AddAuth();
+
         builder.ConfigureOpenTelemetry();
 
         var connectionString = builder.Configuration.GetSection("ConnectionString").Value;

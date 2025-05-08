@@ -12,6 +12,7 @@ builder.Services.AddOutputCache();
 var app = builder.Build();
 
 app.UseHttpsRedirection();
+app.UseAuthorization();
 app.UseOutputCache();
 
 app.MapEndpoints();

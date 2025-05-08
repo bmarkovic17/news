@@ -9,8 +9,15 @@ internal static class ApiV1Endpoints
 
     public static void MapEndpoints(this IEndpointRouteBuilder builder)
     {
+        // Public API endpoints
         _ = builder
             .MapGroup(Prefix)
-            .MapArticleEndpoints();
+            .MapPublicArticleEndpoints();
+
+        // Secure API endpoints
+        _ = builder
+            .MapGroup(Prefix)
+            .RequireAuthorization()
+            .MapSecuredArticleEndpoints();
     }
 }

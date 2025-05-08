@@ -6,6 +6,15 @@ namespace NewsApp.Api.Extensions;
 
 internal static class ServiceCollectionExtensions
 {
+    public static void AddAuth(this IServiceCollection services)
+    {
+        services
+            .AddAuthentication()
+            .AddJwtBearer();
+
+        services.AddAuthorization();
+    }
+
     public static void AddQueryHandlers(this IServiceCollection services) =>
         _ = services.AddScoped<GetAllArticlesQueryHandler>();
 

@@ -16,9 +16,14 @@ internal sealed class CreateArticleCommandHandler(NewsDbContext newsDbContext) :
         if (createArticleResult.IsSuccessful is false)
             return Result.Fail(createArticleResult.Errors);
 
+        if (command.UserId is null or < 1)
+            return Result.Fail();
+
         await newsDbContext.Articles
             .AddAsync(createArticleResult.Value!, cancellationToken)
             .ConfigureAwait(false);
+
+        newsDbContext.Entry(createArticleResult.Value!).Property("UserId").CurrentValue = command.UserId;
 
         await newsDbContext
             .SaveChangesAsync(cancellationToken)

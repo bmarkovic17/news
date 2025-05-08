@@ -14,6 +14,10 @@ internal sealed class ArticleEntityTypeConfiguration : IEntityTypeConfiguration<
             .Property(article => article.Id)
             .UseHiLo("article_id_sequence", "news");
 
+        builder
+            .Property<int>("UserId")
+            .IsRequired();
+
         builder.ComplexProperty(
             article => article.Title,
             propertyBuilder => propertyBuilder
