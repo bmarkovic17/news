@@ -30,7 +30,7 @@ public sealed class Article
 
     public ArticleStatus Status { get; private set; }
 
-    public DateTimeOffset Created { get; }
+    public DateTimeOffset Created { get; private init; }
 
     public DateTimeOffset? Modified { get; private set; }
 

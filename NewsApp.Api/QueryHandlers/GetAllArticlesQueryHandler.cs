@@ -19,6 +19,7 @@ internal sealed class GetAllArticlesQueryHandler(NewsDbContext newsDbContext, IL
         try
         {
             var articles = await newsDbContext.Articles
+                .OrderByDescending(article => article.Created)
                 .Skip((query.Page - 1) * query.Size)
                 .Take(query.Size)
                 .ToListAsync();

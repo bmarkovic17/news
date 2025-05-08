@@ -1,5 +1,7 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
 using NewsApp.Api.QueryHandlers;
 using NewsApp.Core.Queries;
 
@@ -27,7 +29,9 @@ internal static class ArticleEndpoints
                     var articles = await handler.HandleAsync(query);
 
                     return articles;
-                });
+                })
+            .CacheOutput(policy => policy
+                .Expire(TimeSpan.FromHours(1)));
 
         return group;
     }
