@@ -21,6 +21,7 @@ internal static class WebApplicationBuilderExtensions
 
         builder.Services.AddNewsAppInfrastructure(connectionString);
         builder.Services.AddQueryHandlers();
+        builder.Services.AddCommandHandlers();
     }
 
     private static void ConfigureOpenTelemetry(this WebApplicationBuilder builder)

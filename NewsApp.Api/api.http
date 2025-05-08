@@ -15,3 +15,38 @@ Accept: application/json
 # @name Get all articles with invalid paging
 GET {{Host}}/api/v1/article?page=0&size=101
 Accept: application/json
+
+###
+
+# @name Create new article without content
+POST {{Host}}/api/v1/article
+Accept: application/json
+Content-Type: application/json
+
+{
+    "title": "Some article title"
+}
+
+###
+
+# @name Create new article with content
+POST {{Host}}/api/v1/article
+Accept: application/json
+Content-Type: application/json
+
+{
+    "title": "Some article title",
+    "content": "Sample content for new article"
+}
+
+###
+
+# @name Create new article with invalid request
+POST {{Host}}/api/v1/article
+Accept: application/json
+Content-Type: application/json
+
+{
+    "title": "",
+    "content": "Sample content for new article"
+}
