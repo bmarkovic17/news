@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NewsApp.Core.Domain.UserEntity;
+using NewsApp.Core.Domain.Entities.UserEntity;
 
 namespace NewsApp.Infrastructure.Persistence.Configurations;
 

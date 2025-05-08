@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace NewsApp.Core.Queries;
+namespace NewsApp.Core.Domain.Queries;
 
 public sealed class GetAllArticlesQuery(int page, int size) : IQuery
 {

@@ -12,9 +12,9 @@ using Microsoft.Extensions.Logging;
 using NewsApp.Api.CommandHandlers;
 using NewsApp.Api.Extensions;
 using NewsApp.Api.QueryHandlers;
-using NewsApp.Core.Commands;
-using NewsApp.Core.Domain.ArticleEntity;
-using NewsApp.Core.Queries;
+using NewsApp.Core.Domain.Commands;
+using NewsApp.Core.Domain.Entities.ArticleEntity;
+using NewsApp.Core.Domain.Queries;
 using NewsApp.Core.SharedKernel;
 
 namespace NewsApp.Api.Endpoints;

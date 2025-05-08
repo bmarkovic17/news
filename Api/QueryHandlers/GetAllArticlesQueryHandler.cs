@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using NewsApp.Core.Domain.ArticleEntity;
-using NewsApp.Core.Queries;
+using NewsApp.Core.Domain.Entities.ArticleEntity;
+using NewsApp.Core.Domain.Queries;
 using NewsApp.Core.SharedKernel;
 using NewsApp.Infrastructure.Persistence;
 

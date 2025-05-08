@@ -1,4 +1,4 @@
-using NewsApp.Core.Domain.ArticleEntity;
+using NewsApp.Core.Domain.Entities.ArticleEntity;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
 
 namespace NewsApp.Infrastructure.Extensions;

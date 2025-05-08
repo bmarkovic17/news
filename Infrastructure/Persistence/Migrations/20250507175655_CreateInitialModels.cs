@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using NewsApp.Core.Domain.ArticleEntity;
+using NewsApp.Core.Domain.Entities.ArticleEntity;
 
 #nullable disable
 

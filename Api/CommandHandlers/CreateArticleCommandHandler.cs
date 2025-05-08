@@ -1,7 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
-using NewsApp.Core.Commands;
-using NewsApp.Core.Domain.ArticleEntity;
+using NewsApp.Core.Domain.Commands;
+using NewsApp.Core.Domain.Entities.ArticleEntity;
+using NewsApp.Core.Domain.Events;
 using NewsApp.Core.SharedKernel;
 using NewsApp.Infrastructure.Persistence;
 
@@ -19,15 +20,19 @@ internal sealed class CreateArticleCommandHandler(NewsDbContext newsDbContext) :
         if (command.UserId is null or < 1)
             return Result.Fail();
 
+        var article = createArticleResult.Value!;
+
         await newsDbContext.Articles
-            .AddAsync(createArticleResult.Value!, cancellationToken)
+            .AddAsync(article, cancellationToken)
             .ConfigureAwait(false);
 
-        newsDbContext.Entry(createArticleResult.Value!).Property("UserId").CurrentValue = command.UserId;
+        newsDbContext.Entry(article).Property("UserId").CurrentValue = command.UserId;
 
         await newsDbContext
             .SaveChangesAsync(cancellationToken)
             .ConfigureAwait(false);
+
+        DomainEventDispatcher.DispatchNewArticleCreatedEvent(article);
 
         return createArticleResult;
     }

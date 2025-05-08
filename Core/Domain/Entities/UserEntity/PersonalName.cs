@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace NewsApp.Core.Domain.UserEntity;
+namespace NewsApp.Core.Domain.Entities.UserEntity;
 
 public sealed class PersonalName : ValueObject<PersonalName>
 {

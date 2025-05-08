@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Net.Mail;
 
-namespace NewsApp.Core.Domain.UserEntity;
+namespace NewsApp.Core.Domain.Entities.UserEntity;
 
 public sealed class Email : ValueObject<Email>
 {

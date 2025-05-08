@@ -1,4 +1,4 @@
-namespace NewsApp.Core.Domain.ArticleEntity;
+namespace NewsApp.Core.Domain.Entities.ArticleEntity;
 
 public enum ArticleStatus
 {

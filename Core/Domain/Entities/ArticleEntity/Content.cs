@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace NewsApp.Core.Domain.ArticleEntity;
+namespace NewsApp.Core.Domain.Entities.ArticleEntity;
 
 public sealed class Content : ValueObject<Content>
 {

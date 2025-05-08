@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using NewsApp.Core.Domain.ArticleEntity;
+using NewsApp.Core.Domain.Entities.ArticleEntity;
 
 namespace NewsApp.UnitTests.Core.Domain;
 

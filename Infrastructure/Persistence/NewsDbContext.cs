@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using NewsApp.Core.Domain.ArticleEntity;
+using NewsApp.Core.Domain.Entities.ArticleEntity;
 
 namespace NewsApp.Infrastructure.Persistence;
 

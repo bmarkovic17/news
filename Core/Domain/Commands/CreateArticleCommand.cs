@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace NewsApp.Core.Commands;
+namespace NewsApp.Core.Domain.Commands;
 
 public sealed class CreateArticleCommand : ICommand
 {

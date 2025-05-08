@@ -1,6 +1,8 @@
 using System;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NewsApp.Api.BackgroundServices;
 using NewsApp.Infrastructure.Extensions;
 
 namespace NewsApp.Api.Extensions;
@@ -24,6 +26,8 @@ internal static class WebApplicationBuilderExtensions
         builder.Services.AddNewsAppInfrastructure(connectionString);
         builder.Services.AddQueryHandlers();
         builder.Services.AddCommandHandlers();
+
+        builder.Services.AddHostedService<DomainEventHandler>();
     }
 
     private static void ConfigureOpenTelemetry(this WebApplicationBuilder builder)

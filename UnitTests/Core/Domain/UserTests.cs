@@ -1,4 +1,4 @@
-using NewsApp.Core.Domain.UserEntity;
+using NewsApp.Core.Domain.Entities.UserEntity;
 
 namespace NewsApp.UnitTests.Core.Domain;
 

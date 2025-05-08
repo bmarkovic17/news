@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using NewsApp.Core.Domain.ArticleEntity;
+using NewsApp.Core.Domain.Entities.ArticleEntity;
 
-namespace NewsApp.Core.Domain.UserEntity;
+namespace NewsApp.Core.Domain.Entities.UserEntity;
 
 public sealed class User
 {
