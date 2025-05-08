@@ -3,10 +3,19 @@ using System.Collections.Generic;
 
 namespace NewsApp.Core.Domain.Entities.ArticleEntity;
 
+/// <summary>
+/// Represents an article entity in the news application.
+/// This is the core domain entity for articles in the system.
+/// </summary>
 public sealed class Article
 {
-    // Used by EF only
-    // Can be removed once https://github.com/dotnet/efcore/issues/31621 is implemented
+    /// <summary>
+    /// Private parameterless constructor used by Entity Framework for entity materialization.
+    /// This can be removed once https://github.com/dotnet/efcore/issues/31621 is implemented.
+    /// </summary>
+    /// <remarks>
+    /// Can be removed once https://github.com/dotnet/efcore/issues/31621 is implemented
+    /// </remarks>
     private Article()
     {
         Title = default!;

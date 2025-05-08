@@ -19,6 +19,9 @@ using NewsApp.Core.SharedKernel;
 
 namespace NewsApp.Api.Endpoints;
 
+/// <summary>
+/// Configures the HTTP endpoints related to article management.
+/// </summary>
 internal static class ArticleEndpoints
 {
     public static RouteGroupBuilder MapPublicArticleEndpoints(this RouteGroupBuilder group)

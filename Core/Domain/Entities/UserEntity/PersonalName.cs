@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace NewsApp.Core.Domain.Entities.UserEntity;
 
+/// <summary>
+/// Represents a person's name as a value object, consisting of a first name and surname.
+/// </summary>
 public sealed class PersonalName : ValueObject<PersonalName>
 {
     private const string NameErrorKey = "name";
@@ -17,6 +20,15 @@ public sealed class PersonalName : ValueObject<PersonalName>
 
     public string Surname { get; }
 
+    /// <summary>
+    /// Creates a new instance of the <see cref="PersonalName"/> class.
+    /// </summary>
+    /// <param name="name">The person's first name.</param>
+    /// <param name="surname">The person's surname.</param>
+    /// <returns>
+    /// A result containing the created <see cref="PersonalName"/> instance if validation succeeds,
+    /// or a result containing validation errors if validation fails.
+    /// </returns>
     public static Result<PersonalName> Create(string? name, string? surname)
     {
         Dictionary<string, ICollection<string>> errors = [];

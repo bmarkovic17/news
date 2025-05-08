@@ -6,6 +6,9 @@ using NewsApp.Core.Domain.Events;
 
 namespace NewsApp.Api.BackgroundServices;
 
+/// <summary>
+/// Background service responsible for processing domain events asynchronously.
+/// </summary>
 internal sealed class DomainEventHandler : BackgroundService
 {
     protected override Task ExecuteAsync(CancellationToken stoppingToken)

@@ -4,6 +4,9 @@ using NewsApp.Core.Domain.Entities.UserEntity;
 
 namespace NewsApp.Infrastructure.Persistence.Configurations;
 
+/// <summary>
+/// Configures the database mapping for the <see cref="User"/> entity.
+/// </summary>
 internal sealed class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)

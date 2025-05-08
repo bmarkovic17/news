@@ -7,8 +7,19 @@ using NewsApp.Infrastructure.Extensions;
 
 namespace NewsApp.Infrastructure.Persistence;
 
+/// <summary>
+/// Factory for creating instances of NewsDbContext at design time.
+/// Used by EF Core tools for migrations and other design-time operations.
+/// </summary>
 internal sealed class NewsDbContextDesignTimeFactory : IDesignTimeDbContextFactory<NewsDbContext>
 {
+    /// <summary>
+    /// Creates a new instance of a NewsDbContext.
+    /// Reads connection string from user secrets.
+    /// </summary>
+    /// <param name="args">Arguments provided by the design-time service.</param>
+    /// <returns>A new instance of NewsDbContext.</returns>
+    /// <exception cref="Exception">Thrown when connection string is not set in user secrets.</exception>
     public NewsDbContext CreateDbContext(string[] args)
     {
         var connectionString = new ConfigurationBuilder()

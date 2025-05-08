@@ -4,6 +4,10 @@ using NewsApp.Core.Domain.Entities.ArticleEntity;
 
 namespace NewsApp.Infrastructure.Persistence.Configurations;
 
+/// <summary>
+/// Configures the Entity Framework Core mapping for the Article entity.
+/// Defines database schema, constraints, and relationships.
+/// </summary>
 internal sealed class ArticleEntityTypeConfiguration : IEntityTypeConfiguration<Article>
 {
     public void Configure(EntityTypeBuilder<Article> builder)

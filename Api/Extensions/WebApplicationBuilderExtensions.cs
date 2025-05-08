@@ -7,8 +7,16 @@ using NewsApp.Infrastructure.Extensions;
 
 namespace NewsApp.Api.Extensions;
 
+/// <summary>
+/// Provides extension methods for configuring the web application during startup.
+/// </summary>
 internal static class WebApplicationBuilderExtensions
 {
+    /// <summary>
+    /// Registers and configures all required services for the NewsApp application.
+    /// </summary>
+    /// <param name="builder">The web application builder to configure.</param>
+    /// <exception cref="Exception">Thrown when the database connection string is not configured.</exception>
     public static void AddNewsApp(this WebApplicationBuilder builder)
     {
         builder.Services.AddAuth();
@@ -30,6 +38,10 @@ internal static class WebApplicationBuilderExtensions
         builder.Services.AddHostedService<DomainEventHandler>();
     }
 
+    /// <summary>
+    /// Configures the OpenTelemetry services if the OTLP exporter endpoint is configured.
+    /// </summary>
+    /// <param name="builder">The web application builder to configure.</param>
     private static void ConfigureOpenTelemetry(this WebApplicationBuilder builder)
     {
         if (string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]))

@@ -2,6 +2,11 @@ using System.Collections.Generic;
 
 namespace NewsApp.Core.Domain.Queries;
 
+/// <summary>
+/// Represents a query to retrieve a paginated list of all articles.
+/// </summary>
+/// <param name="page">The page number to retrieve (1-based).</param>
+/// <param name="size">The number of articles per page.</param>
 public sealed class GetAllArticlesQuery(int page, int size) : IQuery
 {
     private const string PageErrorKey = "page";
@@ -11,6 +16,10 @@ public sealed class GetAllArticlesQuery(int page, int size) : IQuery
 
     public int Size { get; } = size;
 
+    /// <summary>
+    /// Validates the query parameters.
+    /// </summary>
+    /// <returns>A result indicating whether the validation succeeded or failed with error messages.</returns>
     public ResultBase Validate()
     {
         Dictionary<string, ICollection<string>> errors = [];

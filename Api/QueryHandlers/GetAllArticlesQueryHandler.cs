@@ -9,8 +9,17 @@ using NewsApp.Infrastructure.Persistence;
 
 namespace NewsApp.Api.QueryHandlers;
 
+/// <summary>
+/// Handles the retrieval of paginated articles from the database.
+/// </summary>
+/// <param name="newsDbContext">The database context used to access article data.</param>
 internal sealed class GetAllArticlesQueryHandler(NewsDbContext newsDbContext) : QueryHandlerBase<GetAllArticlesQuery>
 {
+    /// <summary>
+    /// Executes the query to retrieve a paginated list of articles.
+    /// </summary>
+    /// <param name="query">The query containing pagination parameters (page number and page size).</param>
+    /// <returns>A <see cref="PagedResult{T}"/> containing the list of articles for the requested page.</returns>
     protected override async Task<ResultBase> RunAsync(GetAllArticlesQuery query)
     {
         var articles = await newsDbContext.Articles
