@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using NewsApp.Api.QueryHandlers;
 using NewsApp.Core.Queries;
@@ -22,8 +21,13 @@ internal static class ArticleEndpoints
         group
             .MapGet(
                 "/",
-                async ([FromBody] GetAllArticlesQuery query, GetAllArticlesQueryHandler handler) =>
-                    await handler.HandleAsync(query));
+                async (GetAllArticlesQueryHandler handler, int page = 1, int size = 10) =>
+                {
+                    var query = new GetAllArticlesQuery(page, size);
+                    var articles = await handler.HandleAsync(query);
+
+                    return articles;
+                });
 
         return group;
     }

@@ -1,8 +1,17 @@
 @Host = https://localhost:7247
 
-# @name Get all articles
+# @name Get all articles with default paging
 GET {{Host}}/api/v1/article
-Content-Type: application/json
 Accept: application/json
 
-{}
+###
+
+# @name Get all articles with custom paging
+GET {{Host}}/api/v1/article?page=2&size=5
+Accept: application/json
+
+###
+
+# @name Get all articles with invalid paging
+GET {{Host}}/api/v1/article?page=0&size=101
+Accept: application/json

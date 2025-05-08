@@ -1,3 +1,6 @@
 namespace NewsApp.Core.SharedKernel;
 
-public interface IQuery;
+public interface IQuery
+{
+    ResultBase Validate();
+}

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -11,21 +12,24 @@ using NewsApp.Infrastructure.Persistence;
 
 namespace NewsApp.Api.QueryHandlers;
 
-internal sealed class GetAllArticlesQueryHandler(NewsDbContext newsDbContext, ILogger<GetAllArticlesQueryHandler> logger) : IQueryHandler<GetAllArticlesQuery, List<Article>>
+internal sealed class GetAllArticlesQueryHandler(NewsDbContext newsDbContext, ILogger<GetAllArticlesQueryHandler> logger) : QueryHandlerBase<GetAllArticlesQuery>
 {
-    public async Task<Result<List<Article>>> HandleAsync(GetAllArticlesQuery query)
+    protected override async Task<ResultBase> RunAsync(GetAllArticlesQuery query)
     {
         try
         {
-            var articles = await newsDbContext.Articles.ToListAsync();
+            var articles = await newsDbContext.Articles
+                .Skip((query.Page - 1) * query.Size)
+                .Take(query.Size)
+                .ToListAsync();
 
-            return Result<List<Article>>.Success(articles);
+            return PagedResult<List<Article>>.Success(articles, query.Page, query.Size);
         }
         catch (Exception exception)
         {
             logger.GetAllArticlesQueryHandlerError(exception);
 
-            return Result<List<Article>>.Fail();
+            return PagedResult<List<Article>>.Fail();
         }
     }
 }
